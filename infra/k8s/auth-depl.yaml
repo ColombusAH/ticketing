@@ -13,26 +13,18 @@ spec:
         app: auth
     spec:
       containers:
-      - name: auth
-        image: us.gcr.io/famous-rhythm-326311/auth
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 3000
+        - name: auth
+          image: avnerh/auth
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: auth-srv
 spec:
-  type: ClusterIP
   selector:
     app: auth
   ports:
-  - name: auth
-    protocol: TCP
-    port: 3000
-    targetPort: 3000
-
+    - name: auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

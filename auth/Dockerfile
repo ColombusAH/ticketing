@@ -3,6 +3,7 @@ FROM node:alpine
 WORKDIR /app
 COPY package.json .
 RUN npm install
-COPY . . 
+COPY . .
+RUN ls
 
-CMD ["npm", "start"]
+CMD ["npm","run", "start"]

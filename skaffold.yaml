@@ -3,15 +3,13 @@ kind: Config
 deploy:
   kubectl:
     manifests:
-      - "infra/k8s/*"
+      - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: famous-rhythm-326311
+  local:
+    push: false
   artifacts:
-    - image: us.gcr.io/famous-rhythm-326311/auth
-      context: auth
+    - image: avnerh/auth
+      context: auth-srv
       docker:
         dockerfile: Dockerfile
       sync:
