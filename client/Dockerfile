@@ -1,4 +1,4 @@
-FROM node:alpine as buildContainer
+FROM node:16.10-alpine3.11 as buildContainer
 WORKDIR /app
 COPY ./package.json .
 RUN npm install
@@ -7,7 +7,7 @@ COPY . .
 ENV NODE_OPTIONS --max-old-space-size=2048
 RUN npm run build:ssr
 
-FROM node:alpine
+FROM node:16.10-alpine3.11
 
 WORKDIR /app
 COPY --from=buildContainer ./app/package.json .
@@ -20,3 +20,12 @@ EXPOSE 4000
 
 ENV NODE_ENV production
 CMD ["npm", "run", "serve:ssr"]
+# FROM node:16.10-alpine3.11
+
+# WORKDIR /app
+# COPY package.json .
+# RUN npm install
+# COPY . .
+# EXPOSE 4000
+
+# CMD ["npm","run", "serve:ssr"]
