@@ -8,14 +8,18 @@
         height="28"
       />
     </a>
-    <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+    <div
+      class="navbar-burger"
+      [class.is-active]="isMenuOpen$ | async"
+      (click)="toggleMenu()"
+    >
       <span></span>
       <span></span>
       <span></span>
     </div>
   </div>
 
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
+  <div class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="https://bulma.io/"> Home </a>
       <div class="navbar-item has-dropdown is-hoverable">
