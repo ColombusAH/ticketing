@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { LayoutService } from './layout.service';
 
 @Component({
@@ -7,13 +8,11 @@ import { LayoutService } from './layout.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  isMenuOpen$ = this.layoutService.isMenuOpen$;
+  isMenuOpen$: Observable<boolean> = this.layoutService.isMenuOpen$;
 
   constructor(private readonly layoutService: LayoutService) {}
 
-  ngOnInit(): void {
-    console.log('ok');
-  }
+  ngOnInit(): void {}
   toggleMenu() {
     this.layoutService.toggleMenu();
   }
