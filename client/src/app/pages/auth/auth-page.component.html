@@ -1,0 +1,60 @@
+<section class="hero is-success is-fullheight">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-4 is-offset-4">
+        <figure class="avatar">
+          <img src="https://placehold.it/128x128" />
+        </figure>
+        <form [formGroup]="form">
+          <div class="field">
+            <div class="control">
+              <input
+                [class.is-danger]="
+                  !formControls['email'].valid &&
+                  (!formControls['email'].pristine ||
+                    formControls['email'].touched)
+                "
+                formControlName="email"
+                class="input is-large"
+                type="email"
+                placeholder="מייל"
+                autofocus=""
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <input
+                [class.is-danger]="
+                  !formControls['password'].valid &&
+                  (!formControls['password'].pristine ||
+                    formControls['password'].touched)
+                "
+                formControlName="password"
+                class="input is-large"
+                type="password"
+                placeholder="סיסמא"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="checkbox">
+              <input formControlName="rememberMe" class="" type="checkbox" />
+              <span class="mr-1 has-text-black">זכור אותי</span>
+            </label>
+          </div>
+          <button
+            (click)="login()"
+            [disabled]="!form.valid"
+            class="button is-block is-info is-large is-fullwidth"
+          >
+            התחבר! <i class="fa fa-sign-in" aria-hidden="true"></i>
+          </button>
+        </form>
+
+        <div></div>
+      </div>
+    </div>
+  </div>
+</section>
