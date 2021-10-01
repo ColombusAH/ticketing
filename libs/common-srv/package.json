@@ -1,9 +1,11 @@
 {
   "name": "@ticketsah/common-srv",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "publish": "npm version patch && git add . && git commit -m \" updated\" && git push  && npm publish --access public"
+  },
   "dependencies": {
     "@nestjs/common": "^8.0.7",
     "@nestjs/passport": "^8.0.1"
