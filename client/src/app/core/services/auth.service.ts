@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { CurrentUser, LoginCredentials } from 'src/app/interfaces/auth';
@@ -27,14 +27,22 @@ export class AuthService {
   }
 
   login(creds: LoginCredentials) {
-    return this.httpClient.post('/api/users/auth/login', { ...creds }).pipe(
-      map((user) => user as CurrentUser),
-      tap((user) => {
-        console.log({ u: user });
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-      })
-    );
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      withCredentials: true,
+    };
+    return this.httpClient
+      .post('/api/users/auth/login', { ...creds }, options)
+      .pipe(
+        map((user) => user as CurrentUser),
+        tap((user) => {
+          console.log({ u: user });
+          console.log(this.cookieService.get('Authentication'));
+
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+        })
+      );
   }
 
   logout() {
