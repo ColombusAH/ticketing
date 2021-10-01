@@ -45,7 +45,7 @@
             </label>
           </div>
           <button
-            (click)="login()"
+            (click)="login(form.value)"
             [disabled]="!form.valid"
             class="button is-block is-info is-large is-fullwidth"
           >
