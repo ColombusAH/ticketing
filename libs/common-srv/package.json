@@ -1,0 +1,17 @@
+{
+  "name": "@tickets/common-srv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "@nestjs/common": "^8.0.7",
+    "@nestjs/passport": "^8.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "common-srv": {
+      "type": "library",
+      "root": "libs/common-srv",
+      "entryFile": "index",
+      "sourceRoot": "libs/common-srv/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common-srv/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}
