@@ -23,6 +23,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: TokenPayload) {
-    return payload && payload.nickname && payload.userId;
+    if (payload && payload.nickname && payload.userId) {
+      const { userId: id, nickname } = payload;
+      return { id, nickname };
+    }
+    return null;
   }
 }

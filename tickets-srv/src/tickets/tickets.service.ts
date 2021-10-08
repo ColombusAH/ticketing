@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
+import { TicketsRepository } from './tickets.repo';
 
 @Injectable()
 export class TicketsService {
-  create(createTicketDto: CreateTicketDto) {
-    return 'This action adds a new ticket';
+  constructor(private readonly ticketRepo: TicketsRepository) {}
+  create(createTicketDto: CreateTicketDto & { userId: string }) {
+    return this.ticketRepo.create(createTicketDto);
   }
 
   findAll() {
