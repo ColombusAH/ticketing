@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@ticketing/shared-srv": [
+        "packages/shared-srv/src/index.ts"
+      ]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "projects": {
+    "auth-srv": {
+      "root": "auth-srv"
+    },
+    "client": {
+      "root": "client"
+    },
+    "shared-srv": {
+      "root": "packages/shared-srv",
+      "sourceRoot": "packages/shared-srv/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/workspace:tsc",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/shared-srv",
+            "main": "packages/shared-srv/src/index.ts",
+            "tsConfig": "packages/shared-srv/tsconfig.lib.json",
+            "assets": [
+              "packages/shared-srv/*.md"
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "packages/shared-srv/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/shared-srv"
+          ],
+          "options": {
+            "jestConfig": "packages/shared-srv/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tickets-srv": {
+      "root": "tickets-srv"
+    }
+  }
+}
