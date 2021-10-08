@@ -25,4 +25,8 @@ export class TicketsRepository {
   ) {
     return this.TicketModel.findOne({ [key]: value });
   }
+
+  async findAll() {
+    return this.TicketModel.find();
+  }
 }

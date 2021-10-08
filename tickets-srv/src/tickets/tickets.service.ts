@@ -11,11 +11,11 @@ export class TicketsService {
   }
 
   findAll() {
-    return `This action returns all tickets`;
+    return this.ticketRepo.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ticket`;
+  findOne(title: string) {
+    return this.ticketRepo.getByKey('title', title);
   }
 
   update(id: number, updateTicketDto: UpdateTicketDto) {

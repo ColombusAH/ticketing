@@ -19,8 +19,8 @@ import { RequestWithUser } from '../interfaces';
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
-  @UseGuards(JwtAuthenticationGuard)
   @Post()
+  @UseGuards(JwtAuthenticationGuard)
   create(
     @Body() createTicketDto: CreateTicketDto,
     @Req() request: RequestWithUser,
@@ -34,12 +34,13 @@ export class TicketsController {
     return this.ticketsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ticketsService.findOne(+id);
+  @Get(':title')
+  findOne(@Param('title') title: string) {
+    return this.ticketsService.findOne(title);
   }
 
   @Patch(':id')
+  @UseGuards(JwtAuthenticationGuard)
   update(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketDto) {
     return this.ticketsService.update(+id, updateTicketDto);
   }
