@@ -14,6 +14,8 @@ import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { JwtAuthenticationGuard } from 'src/auth/guards';
 import { RequestWithUser } from '../interfaces';
+import { IsOwnerGuard } from 'src/utils/guards';
+import { ValidIdPipe } from 'src/utils';
 
 @Controller()
 export class TicketsController {
@@ -36,16 +38,20 @@ export class TicketsController {
 
   @Get(':title')
   findOne(@Param('title') title: string) {
-    return this.ticketsService.findOne(title);
+    return this.ticketsService.findOneByTitle(title);
   }
 
   @Patch(':id')
-  @UseGuards(JwtAuthenticationGuard)
-  update(@Param('id') id: string, @Body() updateTicketDto: UpdateTicketDto) {
-    return this.ticketsService.update(+id, updateTicketDto);
+  @UseGuards(JwtAuthenticationGuard, IsOwnerGuard)
+  update(
+    @Param('id', ValidIdPipe) id: string,
+    @Body() updateTicketDto: UpdateTicketDto,
+  ) {
+    return this.ticketsService.update(id, updateTicketDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthenticationGuard, IsOwnerGuard)
   remove(@Param('id') id: string) {
     return this.ticketsService.remove(+id);
   }

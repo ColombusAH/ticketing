@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { TicketsRepository } from './tickets.repo';
@@ -14,12 +14,19 @@ export class TicketsService {
     return this.ticketRepo.findAll();
   }
 
-  findOne(title: string) {
+  findOneByTitle(title: string) {
     return this.ticketRepo.getByKey('title', title);
   }
 
-  update(id: number, updateTicketDto: UpdateTicketDto) {
-    return `This action updates a #${id} ticket`;
+  findOneById(id: string) {
+    return this.ticketRepo.getById(id);
+  }
+
+  async update(id: string, updateTicketDto: UpdateTicketDto) {
+    const ticket = await this.findOneById(id);
+    if (!ticket) {
+      throw new NotFoundException();
+    }
   }
 
   remove(id: number) {

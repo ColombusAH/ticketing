@@ -1,5 +1,7 @@
 import { Provider } from '@nestjs/common';
 import { Connection } from 'mongoose';
+import { ValidIdPipe } from 'src/utils';
+import { IsOwnerGuard } from 'src/utils/guards/is-owner.guard';
 import { TicketSchema } from './schemas';
 import { TicketsRepository } from './tickets.repo';
 import { TicketsService } from './tickets.service';
@@ -13,4 +15,6 @@ export const TicketsProviders: Provider[] = [
   },
   TicketsRepository,
   TicketsService,
+  IsOwnerGuard,
+  ValidIdPipe,
 ];

@@ -1,9 +1,10 @@
 import { Document, Model } from 'mongoose';
 
 export interface Ticket {
+  id: string;
   title: string;
   price: number;
-  userIs: string;
+  userId: string;
 }
 
 export interface TicketAttrs {
@@ -12,7 +13,12 @@ export interface TicketAttrs {
   userIs: string;
 }
 
-export interface TicketDoc extends Document, Ticket {}
+export interface TicketDoc extends Document {
+  id: string;
+  title: string;
+  price: number;
+  userId: string;
+}
 
 export interface TicketModel extends Model<TicketDoc> {
   build(attrs: TicketAttrs): TicketDoc;

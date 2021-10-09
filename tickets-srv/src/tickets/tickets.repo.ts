@@ -25,6 +25,9 @@ export class TicketsRepository {
   ) {
     return this.TicketModel.findOne({ [key]: value });
   }
+  async getById(id: string) {
+    return this.TicketModel.findById(id);
+  }
 
   async findAll() {
     return this.TicketModel.find();
