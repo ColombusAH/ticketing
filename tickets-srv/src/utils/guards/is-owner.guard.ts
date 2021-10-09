@@ -25,6 +25,7 @@ export class IsOwnerGuard implements CanActivate {
       if (error instanceof NotFoundException) {
         throw error;
       }
+      // catch all errors
       throw new BadRequestException();
     }
   }
